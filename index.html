@@ -9,25 +9,28 @@
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     </head>
     <body>
-        <h1>Descramble the Scramble</h1>
-        <p>Test your brain! Unscramble the word before time runs out.</p>
-        
-        <div id="scrambledWord">-----</div>
-        
-        <div id="inputContainer"></div>
+        <div class="container">
+            <h1>Descramble the Scramble</h1>
+            <p>Test your brain! Unscramble the word before time runs out.</p>
+            
+            <div id="scrambledWord">-----</div>
+            
+            <div id="inputContainer"></div>
 
-        <button id="easyBtn" class="difficulty-btn easy active">Easy</button>
-        <button id="mediumBtn" class="difficulty-btn medium">Medium</button>
-        <button id="hardBtn" class="difficulty-btn hard">Hard</button>
+            <div class="difficulty-container">
+                <button id="easyBtn" class="difficulty-btn easy active">Easy</button>
+                <button id="mediumBtn" class="difficulty-btn medium">Medium</button>
+                <button id="hardBtn" class="difficulty-btn hard">Hard</button>
+            </div>
+            
+            <div id="stats">
+                <p>Tries: <span id="tries">0</span></p>
+                <p>Mistakes: <span id="mistakes">0</span></p>
+                <p>Difficulty: <span id="difficulty">Easy</span></p>
+            </div>
 
-        
-        <div id="stats">
-            <p>Tries: <span id="tries">0</span></p>
-            <p>Mistakes: <span id="mistakes">0</span></p>
-            <p>Difficulty: <span id="difficulty">Easy</span></p>
+            <button id="randomButton">New Word</button>
+            <button id="resetButton">Reset Game</button>
         </div>
-
-        <button id="randomButton">New Word</button>
-        <button id="resetButton">Reset Game</button>
     </body>
 </html>

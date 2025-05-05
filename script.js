@@ -26,7 +26,9 @@ function generateRandomWord() {
     // Display scrambled word
     document.getElementById('scrambledWord').textContent = scrambledWord;
     
-    // Create input fields
+    // Clear and create input fields
+    const inputContainer = document.getElementById('inputContainer');
+    inputContainer.innerHTML = ''; // Clear existing inputs
     createInputFields(currentWord.length);
     
     // Reset counters
@@ -36,8 +38,6 @@ function generateRandomWord() {
 }
 
 function createInputFields(length) {
-    const inputContainer = document.getElementById('inputContainer');
-    inputContainer.innerHTML = '';
     
     for (let i = 0; i < length; i++) {
         const input = document.createElement('input');
@@ -58,7 +58,7 @@ function showWinMessage() {
         <p>Word: ${currentWord}</p>
         <p>Tries: ${tries}</p>
         <p>Mistakes: ${mistakes}</p>
-        <button onclick="this.parentElement.remove()">Play Again</button>
+        <button onclick="resetGame()">Play Again</button>
     `;
     document.body.appendChild(winMessage);
 
@@ -129,8 +129,17 @@ function updateStats() {
 }
 
 function resetGame() {
+    // Remove win message if it exists
+    const winMessage = document.querySelector('.win-message');
+    if (winMessage) {
+        winMessage.remove();
+    }
+
+    // Clear inputs
     const inputs = document.querySelectorAll('#inputContainer input');
     inputs.forEach(input => input.value = '');
+
+    // Reset stats and generate new word
     tries = 0;
     mistakes = 0;
     updateStats();
