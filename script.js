@@ -71,8 +71,42 @@ function handleInput(event) {
             mistakes++;
             alert('❌ Wrong guess! Try again.');
         }
+        updateStats();
     }
 }
+
+function updateStats() {
+    document.getElementById('tries').textContent = tries;
+    document.getElementById('mistakes').textContent = mistakes;
+    document.getElementById('difficulty').textContent = currentDifficulty.charAt(0).toUpperCase() + currentDifficulty.slice(1);
+}
+
+function resetGame() {
+    const inputs = document.querySelectorAll('#inputContainer input');
+    inputs.forEach(input => input.value = '');
+    tries = 0;
+    mistakes = 0;
+    updateStats();
+    generateRandomWord();
+}
+
+function setDifficulty(difficulty) {
+    currentDifficulty = difficulty;
+    // Update active button state
+    document.querySelectorAll('.difficulty-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.getElementById(`${difficulty}Btn`).classList.add('active');
+    // Generate new word with new difficulty
+    generateRandomWord();
+}
+
+// Event Listeners
+document.getElementById("randomButton").addEventListener("click", generateRandomWord);
+document.getElementById("resetButton").addEventListener("click", resetGame);
+document.getElementById("easyBtn").addEventListener("click", () => setDifficulty("easy"));
+document.getElementById("mediumBtn").addEventListener("click", () => setDifficulty("medium"));
+document.getElementById("hardBtn").addEventListener("click", () => setDifficulty("hard"));
 
 // Initialize the game
 generateRandomWord();
