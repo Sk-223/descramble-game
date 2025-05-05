@@ -8,20 +8,44 @@ let currentWord = "";
 let tries = 0;
 let mistakes = 0;
 let currentDifficulty = "easy";
+let timeRemaining;
 let timerInterval;
-let elapsedTime = 0;
+let roundStartTime;
 
 function startTimer() {
+    timeRemaining = getTimeLimit(currentDifficulty);
+    document.getElementById('timer').textContent = timeRemaining;
+
+    // Clear any previous interval
+    if (timerInterval) {
+        clearInterval(timerInterval);
+    }
+
     timerInterval = setInterval(() => {
-        elapsedTime++;
-        document.getElementById('timer').textContent = elapsedTime;
+        timeRemaining--;
+        document.getElementById('timer').textContent = timeRemaining;
+
+        if(timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            showTimeUpMessage();
+        }
     }, 1000);
 }
 
+function getTimeLimit(difficulty) {
+    switch (difficulty) {
+        case 'easy': return 60;
+        case 'medium': return 45;
+        case 'hard': return 30;
+        default: return 60;
+    }
+}
+
 function resetTimer() {
-    clearInterval(timerInterval);
-    elapsedTime = 0;
-    document.getElementById('timer').textContent = elapsedTime;
+    if(timerInterval) {
+        clearInterval(timerInterval);
+    }
+    document.getElementById('timer').textContent = "Time: 0s";
 }
 
 function scrambleWord(word) {
@@ -34,6 +58,7 @@ function scrambleWord(word) {
 }
 
 function generateRandomWord() {
+    roundStartTime = Date.now();
     const words = wordLists[currentDifficulty];
     currentWord = words[Math.floor(Math.random() * words.length)];
     const scrambledWord = scrambleWord(currentWord);
@@ -50,7 +75,8 @@ function generateRandomWord() {
     tries = 0;
     mistakes = 0;
     updateStats();
-    resetTimer();
+
+    // Start Timer for new word
     startTimer();
 }
 
@@ -66,7 +92,20 @@ function createInputFields(length) {
     }
 }
 
+function showTimeUpMessage() {
+    clearInterval(timerInterval);
+    const timeUpMessage = document.createElement('div');
+    timeUpMessage.className = 'time-up-message';
+    timeUpMessage.innerHTML = `
+        <h2>⏰ Time's Up! ⏰</h2>
+        <p>The correct word was: ${currentWord}</p>
+        <button onclick="resetGame()">Play Again</button>
+    `;
+    document.body.appendChild(timeUpMessage);
+}
+
 function showWinMessage() {
+    clearInterval(timerInterval);
     const winMessage = document.createElement('div');
     winMessage.className = 'win-message';
     winMessage.innerHTML = `
@@ -75,10 +114,9 @@ function showWinMessage() {
         <p>Word: ${currentWord}</p>
         <p>Tries: ${tries}</p>
         <p>Mistakes: ${mistakes}</p>
-        <p>Time: ${elapsedTime} seconds</p>
+        <p>Time: ${Math.floor((Date.now() - roundStartTime) / 1000)} seconds</p>
         <button onclick="resetGame()">Play Again</button>
     `;
-    clearInterval(timerInterval);
     document.body.appendChild(winMessage);
 
     // Trigger confetti animation
@@ -169,6 +207,21 @@ function resetGame() {
 
 function setDifficulty(difficulty) {
     currentDifficulty = difficulty;
+    // Set the time limit based on the difficulty level
+    switch (difficulty) {
+        case 'easy':
+            timeRemaining = 60;  // 60 seconds for easy
+            break;
+        case 'medium':
+            timeRemaining = 45;  // 45 seconds for medium
+            break;
+        case 'hard':
+            timeRemaining = 30;  // 30 seconds for hard
+            break;
+        default:
+            timeRemaining = 60;  // Default to easy time
+    }
+
     // Update active button state
     document.querySelectorAll('.difficulty-btn').forEach(btn => {
         btn.classList.remove('active');

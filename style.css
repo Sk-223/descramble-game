@@ -20,11 +20,36 @@ body {
     border: 1px solid #0f3460;
 }
 
+#timerDisplay {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #4cc9f0;
+    text-shadow: 0 0 8px rgba(76, 201, 240, 0.3);
+}
+
 h1 {
     color: #7209b7;
     font-size: 2.5em;
     margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+    letter-spacing: 2px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #7209b7, #4cc9f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(76, 201, 240, 0.3),
+                     0 0 20px rgba(114, 9, 183, 0.3);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(76, 201, 240, 0.5),
+                     0 0 30px rgba(114, 9, 183, 0.5);
+    }
 }
   
 #scrambledWord {
