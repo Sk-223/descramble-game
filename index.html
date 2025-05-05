@@ -5,14 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Descramble the Scramble</title>
         <link rel="stylesheet" href="style.css" />
+        <script src="script.js" defer></script>
     </head>
     <body>
         <h1>Descramble the Scramble</h1>
         <p>Test your brain! Unscramble the word before time runs out.</p>
         
+        <div id="scrambledWord">------</div>
+        
+        <div id="inputContainer"></div>
+
         <button>Easy</button>
         <button>Medium</button>
         <button>Hard</button>
         
+        <div id="stats">
+            <p>Tries: <span id="tries">0</span></p>
+            <p>Mistakes: <span id="mistakes">0</span></p>
+            <p>Difficulty: <span id="difficulty">Easy</span></p>
+        </div>
+
+        <button id="randomButton">New Word</button>
+        <button id="resetButton">Reset Game</button>
     </body>
 </html>
