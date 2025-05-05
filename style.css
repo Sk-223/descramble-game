@@ -26,15 +26,37 @@ body {
     letter-spacing: 1px;
 }
   
-  button:hover {
-    background-color: #e94560;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
-  }
+button:hover {
+background-color: #e94560;
+transform: translateY(-2px);
+box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
   
-  #inputContainer input {
+#inputContainer input {
     width: 30px;
     text-align: center;
     font-size: 1.2em;
     margin: 2px;
-  }
+}
+
+.difficulty-btn.active {
+    background-color: #e94560;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.3);
+}
+
+.difficulty-btn.easy {
+    background-color: #4cc9f0;
+}
+
+.difficulty-btn.medium {
+    background-color: #7209b7;
+}
+
+.difficulty-btn.hard {
+    background-color: #e94560;
+}
+
+.difficulty-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+}
