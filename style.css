@@ -85,7 +85,7 @@ h1 {
     outline: none;
 }
 
-  button {
+button {
     background-color: #0f3460;
     color: #e6e6e6;
     padding: 12px 24px;
@@ -133,6 +133,7 @@ button:hover {
     color: #4cc9f0;
 }
 
+.time-up-message,
 .win-message {
     position: fixed;
     top: 50%;
@@ -146,21 +147,27 @@ button:hover {
     z-index: 1000;
     animation: fadeIn 0.5s ease;
 }
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translate(-50%, -60%); }
     to { opacity: 1; transform: translate(-50%, -50%); }
 }
+
+.time-up-message,
 .win-message h2 {
     color: #4cc9f0;
     margin-bottom: 15px;
 }
+
 .win-message p {
     color: #e6e6e6;
     margin-bottom: 20px;
 }
+
 .win-message button {
     background-color: #e94560;
 }
+
 .win-message button:hover {
     background-color: #4cc9f0;
 }

@@ -192,6 +192,12 @@ function resetGame() {
         winMessage.remove();
     }
 
+    // Remove time-up message if it exists
+    const timeUpMessage = document.querySelector('.time-up-message');
+    if (timeUpMessage) {
+        timeUpMessage.remove();
+    }
+
     // Clear inputs
     const inputs = document.querySelectorAll('#inputContainer input');
     inputs.forEach(input => input.value = '');
