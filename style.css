@@ -4,14 +4,45 @@ body {
     padding: 20px;
     background-color: #1a1a2e;
     color: #e6e6e6;
-  }
+}
   
-  h1 {
+h1 {
     font-size: 2.5em;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  }
+}
   
+#scrambledWord {
+    font-size: 28px;
+    margin: 20px 0;
+    color: #4cc9f0;
+    text-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+    letter-spacing: 2px;
+}
+
+#inputContainer {
+    margin: 20px 0;
+}
+
+#inputContainer input {
+    width: 35px;
+    height: 35px;
+    margin: 0 5px;
+    text-align: center;
+    font-size: 20px;
+    border: 2px solid #0f3460;
+    border-radius: 8px;
+    background-color: #1a1a2e;
+    color: #e6e6e6;
+    transition: all 0.3s ease;
+}
+
+#inputContainer input:focus {
+    border-color: #4cc9f0;
+    box-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+    outline: none;
+}
+
   button {
     background-color: #0f3460;
     color: #e6e6e6;
@@ -27,16 +58,9 @@ body {
 }
   
 button:hover {
-background-color: #e94560;
-transform: translateY(-2px);
-box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
-}
-  
-#inputContainer input {
-    width: 30px;
-    text-align: center;
-    font-size: 1.2em;
-    margin: 2px;
+    background-color: #e94560;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
 }
 
 .difficulty-btn.active {
@@ -59,4 +83,10 @@ box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
 .difficulty-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(76, 201, 240, 0.3);
+}
+
+#stats {
+    margin: 20px 0;
+    font-size: 18px;
+    color: #4cc9f0;
 }
