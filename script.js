@@ -8,6 +8,21 @@ let currentWord = "";
 let tries = 0;
 let mistakes = 0;
 let currentDifficulty = "easy";
+let timerInterval;
+let elapsedTime = 0;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        elapsedTime++;
+        document.getElementById('timer').textContent = elapsedTime;
+    }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    elapsedTime = 0;
+    document.getElementById('timer').textContent = elapsedTime;
+}
 
 function scrambleWord(word) {
     const letters = word.split('');
@@ -35,6 +50,8 @@ function generateRandomWord() {
     tries = 0;
     mistakes = 0;
     updateStats();
+    resetTimer();
+    startTimer();
 }
 
 function createInputFields(length) {
@@ -58,8 +75,10 @@ function showWinMessage() {
         <p>Word: ${currentWord}</p>
         <p>Tries: ${tries}</p>
         <p>Mistakes: ${mistakes}</p>
+        <p>Time: ${elapsedTime} seconds</p>
         <button onclick="resetGame()">Play Again</button>
     `;
+    clearInterval(timerInterval);
     document.body.appendChild(winMessage);
 
     // Trigger confetti animation
@@ -144,6 +163,8 @@ function resetGame() {
     mistakes = 0;
     updateStats();
     generateRandomWord();
+    resetTimer();
+    startTimer();
 }
 
 function setDifficulty(difficulty) {
